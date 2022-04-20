@@ -44,34 +44,18 @@ public class SeleniumExample  {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         // And now use this to visit the target site
-        driver.get("https://jriz.io/");
-        System.out.println("DEBUG - Navigate to main site at https://jriz.io");
+        driver.get("http://ec2-3-88-221-246.compute-1.amazonaws.com:3000");
+        System.out.println("DEBUG - Navigate to RoundRobin LB");
 
         // Log a passed transaction in Flood IO
-        flood.passed_transaction(driver, "The Flood Store - Home");
+        flood.passed_transaction(driver, "RoundRobin LB");
 
-        //select the accessories section
-        driver.findElement(By.cssSelector("img[alt='Accessories']")).click();
-        System.out.println("DEBUG - Click Accessories category on the main site");
-        flood.passed_transaction(driver, "The Flood Store - Accessories");
-
-        //add item to cart
-        Random r = new java.util.Random();
-        List <WebElement> links = driver.findElements(By.cssSelector("a[class='button product_type_simple add_to_cart_button ajax_add_to_cart']"));
-        WebElement randomElement = links.get(r.nextInt(links.size()));
-
-        int linkListCount = links.size();
-        System.out.println("Total Number of link count on page = "  + linkListCount);
-
-        randomElement.click();
-        flood.passed_transaction(driver, "The Flood Store - Add Item to Cart");
-
-        //Go to your cart
-        driver.get("http://jriz.io/cart/");
-        flood.passed_transaction(driver, "The Flood Store - View Cart");
+        // Change select element to desired video
+        Select videos = new Select(driver.findElement(By.id("videoSelector")));
+        videos.selectByVisibleText("Big Buck Bunny");
 
         // Good idea to introduce some form of pacing / think time into your scripts
-        Thread.sleep(2000);
+        Thread.sleep(195000);
 
         iterations++;
 
