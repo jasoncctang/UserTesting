@@ -19,7 +19,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import org.openqa.selenium.support.ui.Select;
 
-public class SeleniumExample  {
+public class NoFlood  {
 
   public static void main(String[] args) throws Exception {
     int iterations = 0;
